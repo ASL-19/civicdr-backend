@@ -38,7 +38,7 @@ module.exports = conn => {
       }
     },
 
-    notifyAdmin: async (context) => {
+    notifyAdmin: async context => {
       // null email addresses are sent to admin
       await add(null, context);
     },

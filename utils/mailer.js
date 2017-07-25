@@ -29,28 +29,28 @@ module.exports = (client, opts) => {
     // This object will need to be updated when translation is implemented
     const messageText = {
       message: {
-        singular: "You received a message.",
-        plural: "You received NUM messages."
+        singular: 'You received a message.',
+        plural: 'You received NUM messages.'
       },
       UpdatedTicket: {
-        singular: "One of your tickets was updated.",
-        plural: "NUM of your tickets were updated.",
+        singular: 'One of your tickets was updated.',
+        plural: 'NUM of your tickets were updated.',
       },
       newTicket: {
-        singular: "A new ticket was created.",
-        plural: "NUM new tickets were created.",
+        singular: 'A new ticket was created.',
+        plural: 'NUM new tickets were created.',
       },
       SPAssigned: {
-        singular: "You were assigned to a ticket.",
-        plural: "You were assigned to NUM tickets.",
+        singular: 'You were assigned to a ticket.',
+        plural: 'You were assigned to NUM tickets.',
       },
       IPProfileUpdate:{
-        singular: "An IP profile was updated.",
-        plural:"NUM IP profiles were updated."
+        singular: 'An IP profile was updated.',
+        plural:'NUM IP profiles were updated.'
       },
       SPProfileUpdate: {
-        singular: "An SP profile was updated.",
-        plural: "NUM SP profiles were updated."
+        singular: 'An SP profile was updated.',
+        plural: 'NUM SP profiles were updated.'
       }
     }
     // Get a sorted list of all contexts in the group
@@ -97,7 +97,7 @@ module.exports = (client, opts) => {
     let dateTime;
     if (emailGroup.length > 1) {
       // Create base date objects
-      const datetimeFormat = "MMM DD HH:mm";
+      const datetimeFormat = 'MMM DD HH:mm';
       const earliest = moment(Math.min(...emailGroup.map(eg => eg.updated_at)));
       const latest = moment(Math.max(...emailGroup.map(eg => eg.updated_at)));
       dateTime = `${earliest.format(datetimeFormat)} UTC`;

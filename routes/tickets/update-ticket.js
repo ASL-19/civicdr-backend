@@ -51,11 +51,11 @@ module.exports = (Ticket, Email) => {
             ticket.ticket_sp_contact,
             ticket.sp_assigned_id,
             'sp',
-            "UpdatedTicket"
+            'UpdatedTicket'
           );
         }
         if (req.user.role !== 'admin') {
-          await Email.notifyAdmin("UpdatedTicket");
+          await Email.notifyAdmin('UpdatedTicket');
         }
       }
 
