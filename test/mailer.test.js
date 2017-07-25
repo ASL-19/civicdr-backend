@@ -108,7 +108,7 @@ test('createEmailData handles multiple grouped email case', t => {
   t.is(emailData.to, 'test@test.com');
   t.is(
     emailData.text,
-        `The following 2 events have occured on the CiviCDR Platform since  ${earliest.format('MMM DD HH:mm')}:\n - One of your tickets was updated.\n - A new ticket was created.\n\nYou can learn more by logging into the CiviCDR Platform.`
+        `The following 2 events have occured on the CiviCDR Platform since ${earliest.format('MMM DD HH:mm')}:\n - One of your tickets was updated.\n - A new ticket was created.\n\nYou can learn more by logging into the CiviCDR Platform.`
   );
 });
 
