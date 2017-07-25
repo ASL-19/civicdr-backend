@@ -11,7 +11,7 @@ let ipAllowedCreateKeys = [
   'steps_taken'
 ];
 
-module.exports = Ticket => {
+module.exports = (Ticket, Email) => {
   return async (req, res) => {
     /* TODO: validate input */
     let data = req.body;
@@ -32,6 +32,22 @@ module.exports = Ticket => {
     try {
       let id = await Ticket.create(data, req.user.profile.name);
       Ticket.updateRead(id[0], req.user);
+
+      // Get ticket info using its id
+      let [ticket] = await Ticket.findById(id[0]);
+      // Notify IP if ticket created by admin
+      if (ticket.ticket_ip_contact && req.user.role !== 'ip') {
+        await Email.notify(
+          ticket.ticket_ip_contact,
+          ticket.ip_assigned_id,
+          'ip',
+          "newTicket"
+        );
+        // Notify Admin if ticket created by IP
+      } else if (req.user.role === 'ip') {
+        await Email.notifyAdmin("newTicket");
+      }
+
       res.status(200).json(id);
     } catch (e) {
       if (e instanceof NotNullViolation) {

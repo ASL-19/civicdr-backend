@@ -10,7 +10,7 @@ module.exports = conn => {
   const SpProfile = require('../../models/sp_profile')(conn);
 
   let routes = {
-    createTicket: require('./create-ticket')(Ticket),
+      createTicket: require('./create-ticket')(Ticket, Email),
     getTicket: require('./read-ticket')(Ticket),
     getTickets: require('./read-tickets')(Ticket),
     updateTicket: require('./update-ticket')(Ticket, Email),
