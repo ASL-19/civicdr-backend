@@ -95,9 +95,9 @@ module.exports = (client, opts) => {
   function createEmailData(emailGroup) {
     let text;
     let dateTime;
+    const datetimeFormat = 'MMM DD HH:mm';
     if (emailGroup.length > 1) {
       // Create base date objects
-      const datetimeFormat = 'MMM DD HH:mm';
       const earliest = moment(Math.min(...emailGroup.map(eg => eg.updated_at)));
       const latest = moment(Math.max(...emailGroup.map(eg => eg.updated_at)));
       dateTime = `${earliest.format(datetimeFormat)} UTC`;
