@@ -33,6 +33,13 @@ module.exports.init = function(opts) {
     next();
   });
 
+  /* Add Security Headers */
+  app.use(function(req, res, next) {
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    next();
+  });
+
   /* Configure logger */
   const env = process.env.NODE_ENV;
   let logger = opts.logger;
