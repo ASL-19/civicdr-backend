@@ -31,7 +31,6 @@ module.exports = (Ticket, Email) => {
       data = R.pick(spAllowedUpdateKeys, data);
     }
 
-
     try {
       /* Check if data has changed */
       let [oldData] = await Ticket.findById(id);
@@ -54,7 +53,7 @@ module.exports = (Ticket, Email) => {
             ticket.ticket_ip_contact,
             ticket.ip_assigned_id,
             'ip',
-            "newStatus"
+            'newStatus'
           );
         }
         if (ticket.ticket_sp_contact && req.user.role !== 'sp') {
@@ -65,8 +64,8 @@ module.exports = (Ticket, Email) => {
             'newStatus'
           );
         }
-      // if Ticket updated, email other parties
-      // Will only show status update or data update for a single ticket
+        // if Ticket updated, email other parties
+        // Will only show status update or data update for a single ticket
       } else {
         if (ticketChanged == true) {
           if (ticket.ticket_ip_contact && req.user.role !== 'ip') {
@@ -75,7 +74,7 @@ module.exports = (Ticket, Email) => {
               ticket.ticket_ip_contact,
               ticket.ip_assigned_id,
               'ip',
-              "UpdatedTicket"
+              'UpdatedTicket'
             );
           }
           if (ticket.ticket_sp_contact && req.user.role !== 'sp') {
