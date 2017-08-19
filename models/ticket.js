@@ -27,6 +27,7 @@ module.exports = conn => {
     'updated_by',
     'created_at',
     'updated_at',
+    'title',
     'ip_assigned_id',
     'sp_assigned_id',
     'notify'

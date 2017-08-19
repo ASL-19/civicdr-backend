@@ -8,7 +8,8 @@ let ipAllowedCreateKeys = [
   'date_of_incident',
   'incident_type',
   'description',
-  'steps_taken'
+  'steps_taken',
+  'title'
 ];
 
 module.exports = (Ticket, Email, IpProfile) => {
