@@ -141,18 +141,15 @@ module.exports = conn => {
         const byTicket = R.groupBy(R.prop('ticket_id'), allGroupings);
         const cache = lookup(byTicket);
 
-        return R.map(
-          x => {
-            let groupings = cache(x.id);
-            if (defined(groupings)) {
-              groupings = R.map(R.omit('ticket_id'), groupings);
-            } else {
-              groupings = [];
-            }
-            return xtend({ groupings }, x);
-          },
-          ticketData
-        );
+        return R.map(x => {
+          let groupings = cache(x.id);
+          if (defined(groupings)) {
+            groupings = R.map(R.omit('ticket_id'), groupings);
+          } else {
+            groupings = [];
+          }
+          return xtend({ groupings }, x);
+        }, ticketData);
       } else {
         return ticketData;
       }
@@ -273,10 +270,12 @@ module.exports = conn => {
       if (defined(read)) {
         // have we read this ticket more recently than it's been updated?
         // also check all relevant threads
-        return read.read_at <= updated_at ||
+        return (
+          read.read_at <= updated_at ||
           threads.some(thread => {
             return read.read_at <= thread.updated_at;
-          });
+          })
+        );
       } else {
         return true;
       }
