@@ -7,7 +7,6 @@ exports.up = async function(knex, Promise) {
 };
 
 exports.down = async function(knex, Promise) {
-
   await knex.schema.table('tickets', t => {
     t.dropColumn('title');
   });
