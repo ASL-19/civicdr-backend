@@ -38,7 +38,7 @@ module.exports = (client, opts) => {
       },
       newStatus: {
         singular: 'The status of one of your tickets has changed.',
-        plural: 'NUM of your tickets had their status changed.',
+        plural: 'NUM of your tickets had their status changed.'
       },
       newTicket: {
         singular: 'A new ticket was created.',

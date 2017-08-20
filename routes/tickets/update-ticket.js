@@ -18,7 +18,6 @@ module.exports = (Ticket, Email) => {
   return async (req, res) => {
     /* TODO: validate input */
     let data = req.body;
-
     let id = req.params.id;
 
     /* If the updating user is an IP or SP
@@ -32,9 +31,12 @@ module.exports = (Ticket, Email) => {
     }
 
     try {
+      let ticketChanged;
       /* Check if data has changed */
       let [oldData] = await Ticket.findById(id);
-      let ticketChanged;
+      if (oldData.length === 0) {
+        throw new RecordNotFound('ticket does not exist');
+      }
       // Check if any returned data fields are different
       for (field in data) {
         if (data[field] != oldData[field]) {
