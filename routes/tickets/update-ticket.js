@@ -46,10 +46,9 @@ module.exports = (Ticket, Email) => {
 
       /* Save data to  db */
       await Ticket.update(id, data, req.user.profile.name);
-
+      let [ticket] = await Ticket.findById(id);
       // if Status updated, email IP and SP
       if (has(data, 'status')) {
-        let [ticket] = await Ticket.findById(id);
         if (ticket.ticket_ip_contact && req.user.role !== 'ip') {
           await Email.notify(
             ticket.ticket_ip_contact,
