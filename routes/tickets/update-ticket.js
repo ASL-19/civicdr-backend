@@ -34,7 +34,7 @@ module.exports = (Ticket, Email) => {
       let ticketChanged;
       /* Check if data has changed */
       let [oldData] = await Ticket.findById(id);
-      if (oldData.length === 0) {
+      if (typeof oldData === 'undefined') {
         throw new RecordNotFound('ticket does not exist');
       }
       // Check if any returned data fields are different
